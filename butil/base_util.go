@@ -28,7 +28,7 @@ func TokenRemoveBearer(getToken string) string {
 	}
 }
 
-// CreateRandomString
+// GenerateRandomString
 //
 // # 生成随机字符串
 //
@@ -40,7 +40,7 @@ func TokenRemoveBearer(getToken string) string {
 //
 // # 返回:
 //   - string 	生成的随机字符串
-func CreateRandomString(length int) string {
+func GenerateRandomString(length int) string {
 	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 	result := make([]byte, length)
 	for i := range result {

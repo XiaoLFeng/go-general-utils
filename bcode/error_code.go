@@ -12,7 +12,7 @@ package bcode
 //   - Message: string	消息
 type ErrorCode struct {
 	Output  string `json:"output"`
-	Code    int    `json:"code"`
+	Code    uint   `json:"code"`
 	Message string `json:"message"`
 }
 

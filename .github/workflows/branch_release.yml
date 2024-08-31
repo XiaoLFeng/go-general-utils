@@ -1,0 +1,35 @@
+name: 发布新版本
+
+on:
+  push:
+    branches:
+      - master  # 当推送到 master 分支时触发
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 签出代码
+        uses: actions/checkout@v3
+
+      - name: 获取当前时间戳
+        id: timestamp
+        run: echo "::set-output name=ts::$(date +%Y%m%d%H%M%S)"
+
+      - name: 创建活动分支归档
+        run: |
+          mkdir -p dist
+          zip -r dist/source-code.zip .
+
+      - name: 发布 Github 版本
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets. GITHUB_TOKEN }}
+        with:
+          tag_name: v1.0.0-${{ steps.timestamp.outputs.ts }}
+          release_name: 发布版本 v1.0.0-${{ steps.timestamp.outputs.ts }}
+          draft: false
+          prerelease: false
+          files: dist/source-code.zip

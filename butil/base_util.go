@@ -21,7 +21,7 @@ import (
 //   - string 		去除 Bearer 前缀的 Token 或直接返回的 Token
 func TokenRemoveBearer(getToken string) string {
 	// 检查数据是否包含 "Bearer " 前缀
-	if !strings.Contains(getToken, "Bearer ") {
+	if strings.Contains(getToken, "Bearer ") {
 		return strings.Replace(getToken, "Bearer ", "", 1)
 	} else {
 		return getToken
